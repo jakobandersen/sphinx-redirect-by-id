@@ -1,0 +1,4 @@
+pypage
+======
+
+.. py:function:: fpy()
