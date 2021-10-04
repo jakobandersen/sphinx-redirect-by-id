@@ -137,9 +137,10 @@ var Redirect = {
     var objnames = this._index.objnames;
 
     for (var prefix in objects) {
-      for (var name in objects[prefix]) {
+       for (var i = 0; i != objects[prefix].length; ++i) {
+          var entry = objects[prefix][i];
+          var name = entry[4];
           var fullname = (prefix ? prefix + '.' : '') + name;
-          var entry = objects[prefix][name];
           var objname = objnames[entry[1]][2];
           var anchor = entry[3];
           if (anchor === '')
