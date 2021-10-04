@@ -1,10 +1,12 @@
 /*
- * searchtools.js
+ * redirecthtools.js
  * ~~~~~~~~~~~~~~~~
  *
- * Sphinx JavaScript utilities for the full-text search.
+ * Sphinx JavaScript utilities for redirecting to an entity based
+ * given its anchor.
+ * Based on searchtools.js and uses searchindex.js as data source.
  *
- * :copyright: Copyright 2007-2021 by the Sphinx team, see AUTHORS.
+ * :copyright: Copyright 2021-2021 by the Sphinx team, see AUTHORS.
  * :license: BSD, see LICENSE for details.
  *
  */
@@ -35,10 +37,8 @@ var Redirect = {
   setIndex : function(index) {
     var q;
     this._index = index;
-	console.log("setIndex(", index, ")")
     if ((q = this._queued_query) !== null) {
       this._queued_query = null;
-	  console.log("  queued_query:", q)
       this.query(q);
     }
   },
@@ -56,7 +56,6 @@ var Redirect = {
   },
 
   startPulse : function() {
-    console.log("startPulse")
     if (this._pulse_status >= 0)
         return;
     function pulse() {
@@ -95,10 +94,7 @@ var Redirect = {
    * execute search (requires search index to be loaded)
    */
   query : function(query) {
-    console.log("query(", query, ")");
-
     var objects = this._index.objects;
-    console.log("objects:", objects);
     var result = Redirect.performObjectSearch(query);
       if (result) {
         var requestUrl = "";
@@ -119,7 +115,6 @@ var Redirect = {
           linkUrl = result[0] + DOCUMENTATION_OPTIONS.LINK_SUFFIX;
         }
         var fullUrl = linkUrl + result[1];
-        console.log("fullUrl:", fullUrl)
         window.location.replace(fullUrl);
       } else {
         Redirect.stopPulse();
@@ -131,7 +126,6 @@ var Redirect = {
    * search for object names
    */
   performObjectSearch : function(query) {
-    console.log("performObjectSearch(", query, ")")
     var docnames = this._index.docnames;
     var objects = this._index.objects;
     var objnames = this._index.objnames;
@@ -147,10 +141,8 @@ var Redirect = {
             anchor = fullname;
           else if (anchor == '-')
             anchor = objnames[entry[1]][1] + '-' + fullname;
-          console.log("Candidate: fullname=%s, objname=%s, anchor=%s",
             fullname, objname, anchor)
           if (anchor == query) {
-           console.log("Found it!")
            return [docnames[entry[0]], '#' + anchor];
           }
       }
