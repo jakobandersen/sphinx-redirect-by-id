@@ -30,7 +30,7 @@ var Redirect = {
           this.performSearch(query);
       } else {
           var out = $('#search-results');
-          var p = $('<p>No query ID provided. Use <code>?q=theId</code> to redirec.</p>').appendTo(out);
+          var p = $('<p>No query ID provided. Use <code>?q=theId</code> to redirect.</p>').appendTo(out);
       }
   },
 
@@ -141,7 +141,6 @@ var Redirect = {
             anchor = fullname;
           else if (anchor == '-')
             anchor = objnames[entry[1]][1] + '-' + fullname;
-            fullname, objname, anchor)
           if (anchor == query) {
            return [docnames[entry[0]], '#' + anchor];
           }
