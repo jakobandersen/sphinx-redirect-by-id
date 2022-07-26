@@ -1,8 +1,8 @@
 import os
 import sys
 
-# this should probably be 'extensions/' or a similar subdir
+# the path addition is probably not needed when installed by pip
 sys.path.append(os.path.abspath('../../'))
 extensions = [
-	'redirect_by_id',
+	'sphinx_redirect_by_id',
 ]
