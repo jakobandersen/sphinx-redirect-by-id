@@ -1,10 +1,10 @@
 {#
-    basic/redirect.html
-    ~~~~~~~~~~~~~~~~~~~
+    redirect.html
+    ~~~~~~~~~~~~~
 
     Template for the redirect page.
 
-    :copyright: Copyright 2021-2021 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2021-2022 by Jakob Lykke Andersen.
     :license: BSD, see LICENSE for details.
 #}
 {%- extends "layout.html" %}

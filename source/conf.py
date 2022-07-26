@@ -1,8 +1,7 @@
-templates_path = ['_templates']
+import os
+import sys
 
-html_static_path = ["_static"]
-
-html_additional_pages = {
-    'redirect': 'redirect.html',
-}
-
+sys.path.append(os.path.abspath('extensions'))
+extensions = [
+	'redirect_by_id',
+]
