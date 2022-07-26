@@ -9,3 +9,7 @@ build:
 .PHONY: upload-test
 upload-test:
 	python3 -m twine upload --repository testpypi dist/*
+
+PHONY: upload-real
+upload-real:
+	python3 -m twine upload dist/*
