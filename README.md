@@ -13,8 +13,10 @@ page will use the existing search index of the project to redirect to the page
 where the entity is located.
 For example, if you have a page `api.html` where a Python function `f` is
 documented, then its permalink may be `https://example.com/api.html#f`. If you
-then browse to `https://example.api.html?q=f` you will be redirected to 
+then browse to `https://example.api.html?q=f` you will be redirected to
 `https://example.com/api.html#f`.
+If the entry is not found, then it redirects to search.html page with the same
+question string.
 
 ## Installation
 

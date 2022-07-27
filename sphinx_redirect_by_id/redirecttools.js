@@ -26,10 +26,8 @@ var Redirect = {
       const query = new URLSearchParams(window.location.search).get("q");
       if(query) {
           Redirect.performSearch(query);
-      } else {
-          const out = document.getElementById('search-results');
-          out.innerHTML = '<p>No query ID provided. Use <code>?q=theId</code> to redirect.</p>';
-      }
+      } else
+        Redirect.redirectToSearch('');
   },
 
   setIndex: function(index) {
@@ -53,12 +51,6 @@ var Redirect = {
    * perform a search for ID (or wait until index is loaded)
    */
   performSearch: function(query) {
-    // create the required interface elements
-    this.out = document.getElementById('search-results');
-    this.title = document.createElement('h2');
-	this.out.appendChild(this.title);
-    this.title.innerHTML = _('Searching') + '...';
-
     // index already loaded, the browser was quick!
     if(this.hasIndex())
       this.query(query);
@@ -92,9 +84,8 @@ var Redirect = {
       }
       var fullUrl = linkUrl + result[1];
       window.location.replace(fullUrl);
-    } else {
-      this.title.innerHTML = _('ID not found') + ": " + query;
-    }
+    } else
+      Redirect.redirectToSearch(query);
   },
 
   /**
@@ -123,6 +114,18 @@ var Redirect = {
     }
     return null;
   },
+
+  redirectToSearch: function(query) {
+    var search_url = '';
+    if(DOCUMENTATION_OPTIONS.BUILDER === 'dirhtml')
+      search_url = DOCUMENTATION_OPTIONS.URL_ROOT + 'search';
+    else
+      search_url = DOCUMENTATION_OPTIONS.URL_ROOT + 'search' + DOCUMENTATION_OPTIONS.FILE_SUFFIX;
+
+    if (query)
+      search_url += '?q=' + query;
+    window.location.replace(search_url);
+  }
 };
 
 _ready(Redirect.init);

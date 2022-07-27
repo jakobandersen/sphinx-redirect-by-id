@@ -18,9 +18,9 @@
   {{ super() }}
 {% endblock %}
 {% block body %}
-  <h1 id="redirect-by-id">{{ _('Redirect by ID') }}</h1>
   {% block scriptwarning %}
   <noscript>
+  <h1 id="redirect-by-id">{{ _('Redirect by ID') }}</h1>
   <div class="admonition warning">
   <p>
     {% trans %}Please activate JavaScript to enable the redirection
