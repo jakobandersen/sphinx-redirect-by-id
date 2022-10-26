@@ -7,7 +7,7 @@
     :copyright: Copyright 2021-2022 by Jakob Lykke Andersen.
     :license: BSD, see LICENSE for details.
 #}
-{%- extends "layout.html" %}
+{%- extends layout_page %}
 {% set title = _('Redirect by ID') %}
 {%- block scripts %}
     {{ super() }}

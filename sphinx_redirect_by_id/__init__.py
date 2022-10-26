@@ -18,10 +18,14 @@ def on_build_finished(app, exc) -> None:
     path = os.path.abspath(os.path.dirname(__file__))
     copy_asset_file(os.path.join(path, 'redirecttools.js'), staticdir)
 
+def on_html_page_context(app, pagename, templatename, context, doctree):
+    context['layout_page'] = app.config['sphinx_redirect_layout_page']
 
 def setup(app):
+    app.add_config_value('sphinx_redirect_layout_page', 'layout.html', 'html')
     app.connect('config-inited', on_config_inited)
     app.connect('build-finished', on_build_finished)
+    app.connect("html-page-context", on_html_page_context)
 
     return {
         'version': '0.1',
